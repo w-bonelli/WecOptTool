@@ -15,7 +15,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: ["ubuntu-latest", "macos-latest"] # TODO: , "windows-latest"
+        os: ["ubuntu-latest", "macos-latest", "windows-latest"]
         python-version: ["3.9", "3.10"]
 
     steps:
@@ -30,9 +30,8 @@ jobs:
       # TODO: Why is this needed? Fix upstream package?
 
     - name: Install GNU Fortran
-      # for capytaine and wavespectra
-      if: matrix.os == 'macos-latest' || matrix.os == 'windows-latest'
       uses: modflowpy/install-gfortran-action@v1
+      # for capytaine and wavespectra
       # TODO: figure out Fortran compilers on Windows.
 
     - name: Install WecOptTool
